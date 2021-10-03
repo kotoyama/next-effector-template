@@ -1,0 +1,73 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "tsconfig.json"
+  },
+  "plugins": [
+    "eslint-plugin-import-helpers",
+    "@typescript-eslint",
+    "effector",
+    "jsx-a11y",
+    "react"
+  ],
+  "extends": [
+    "prettier",
+    "plugin:effector/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@next/next/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts", "**/*.spec.tsx"],
+      "env": { "jest": true },
+      "rules": {
+        "effector/no-getState": "off"
+      }
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-plugin/recommended",
+        "plugin:@typescript-eslint/eslint-plugin/eslint-recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    }
+  ],
+  "rules": {
+    "no-else-return": "warn",
+    "no-console": ["warn"],
+    "prefer-template": "warn",
+    "arrow-body-style": ["warn", "as-needed"],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "module",
+          [
+            "/^features/",
+            "/^pages/",
+            "/^lib/",
+            "/^root/",
+            "/^public/",
+            "/^ui/"
+          ],
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": {
+          "order": "ignore",
+          "ignoreCase": true
+        }
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
